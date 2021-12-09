@@ -1,0 +1,85 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;  
+}
+
+*:focus{
+  border: none;
+  outline: none;
+}
+
+h1{
+  margin: 20px;
+}
+
+form{
+  margin: 50px auto;
+  font-family: 'Courier New', Courier, monospace;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  background-color: #777;
+  padding: 20px;
+  color: white;
+}
+
+form p {
+  padding-bottom: 4px;
+}
+
+form input{
+  border: none;
+  background-color: #bbb;
+  color: white;
+  margin-bottom: 8px;
+}
+
+form select{
+  font-family: 'Courier New', Courier, monospace;
+  background-color: #bbb;  
+}
+
+form .submitBTN{
+  width: 50%;
+  margin: 20px auto 0;
+  padding: 10px 0;
+  border: none;
+  border-radius: 5px;
+  background-color: #333;
+  color: #fff;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+form .submitBTN:hover{
+  background-color: #222;
+}
+
+table{  
+  font-family: 'Courier New', Courier, monospace;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column; 
+}
+
+table tr{
+  margin: 0 auto ;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-bottom: 20px;  
+}
+
+table tr th{
+  display: flex;
+  justify-content: space-between;
+  width: 400px;  
+}
+
+table tr td{
+  display: flex;
+  justify-content: space-between;
+  width: 400px;  
+}
