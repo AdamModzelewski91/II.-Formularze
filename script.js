@@ -17,13 +17,12 @@
 ]
 
 function save() {  
-  let oldBooks
   if(localStorage.getItem('newdata') === null){
     localStorage.setItem('newdata', JSON.stringify(books));
     oldBooks = JSON.parse(localStorage.getItem('newdata')); 
   } else {
     oldBooks = JSON.parse(localStorage.getItem('newdata')); 
-    oldBooks.push(books[books.length -1]);
+    oldBooks.push(books[books.length - 1]);
   } 
   localStorage.setItem('newdata', JSON.stringify(oldBooks))
 }
@@ -75,8 +74,8 @@ generateBook()
   } else if (fauthor.length < 3) {
     alert('Za krótki author. Conajmniej 3 znaki')  
     return addBook
-  } else if (fpiority < 1 || piority > 5) {
-    alert(`Za ${piority < 1 ? 'mała' : 'duża'} liczba`)
+  } else if (fpiority < 1 || fpiority > 5) {
+    alert(`Za ${fpiority < 1 ? 'mała' : 'duża'} liczba`)
     return addBook
   } else if (!fcategory) {
     alert('Wybierz kategorie')
