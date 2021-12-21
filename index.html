@@ -1,32 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  
-  <title>Document</title>
+  <link rel="stylesheet" href="style.css">  
+  <title>Formularz</title>
 </head>
 <body>
-  <h1>II. Formularz</h1>
-  <form action="">
-    <p>Podaj tytuł książki</p>
-    <input id='title' type="text" >
-    <p>Podaj autora książki</p>
-    <input id='author' type="text">
-    <p>Określ piorytet (od 1 do 5)</p>
-    <input id='piority' type="number">
-    <p>Wybierz kategorie:</p>
-    <select id="category">
-      <option value="">Select</option>
-      <option value="fantasy">Fantasy</option>
-      <option value="thriller">Thriller</option>
-      <option value="horror">Horror</option>
-    </select>
-    <button class="submitBTN" type="submit">Wyślij formularz</button>  
-  </form>    
-  <table></table>
-  <script src="script.js"></script>
+  <div class="wrapper">
+    <h1>II. Formularz</h1>
+    <form id="myForm">
+      <label for="title">Podaj tytuł książki</label>
+      <input id='title' type="text" name="title">
+      <label for="author">Podaj autora książki</label>
+      <input id='author' type="text" name="author">
+      <label for='priority'>Określ piorytet (od 1 do 5)</label>
+      <input id='priority' type="number" name="priority">
+      <label for='category'>Wybierz kategorie:</label>
+      <select id="category" name="category">
+        <option id='select' value="">Select</option>
+        <option value="Fantasy">Fantasy</option>
+        <option value="Thriller">Thriller</option>
+        <option value="Horror">Horror</option>
+      </select>
+      <input class="submitBTN" type="submit" value="Wyślij">
+    </form>
+  </div>  
+  <script src="script.js" type="module"></script>
 </body>
 </html>

@@ -1,96 +1,72 @@
- const btn = document.querySelector('.submitBTN')
- const newBooks = document.querySelector('.newBooks')
+import { renderBooks } from "./rednerBooks.js"
+import { saveBook } from "./saveBook.js" 
 
- const books = [
+const table = document.createElement('table')
+document.querySelector('.wrapper').appendChild(table).classList.add('table')
+
+ const books = [  
    {
    title: 'Droga Szamana',
    author: 'Wasilij Machanienko',
-   piority: '5',
+   priority: '5',
    category: 'Fantasy',
  },
    {
    title: 'Nocny Patrol',
    author: 'Siergiej Łukjanienko',
-   piority: '5',
+   priority: '5',
    category: 'Fantasy',
  },
 ]
 
-function save() {  
-  if(localStorage.getItem('newdata') === null){
-    localStorage.setItem('newdata', JSON.stringify(books));
-    oldBooks = JSON.parse(localStorage.getItem('newdata')); 
-  } else {
-    oldBooks = JSON.parse(localStorage.getItem('newdata')); 
-    oldBooks.push(books[books.length - 1]);
-  } 
-  localStorage.setItem('newdata', JSON.stringify(oldBooks))
-}
+document.onvisibilitychange = renderBooks(books)
 
-const generateBook = () =>  { 
-  let storagebooks = books
-  if (localStorage.getItem('newdata') !== null){
-   storagebooks = JSON.parse(localStorage.getItem('newdata'))  
-   }  
+const newElement = document.getElementById('myForm')  
 
-  const parent = document.querySelector('table')
-  while (parent.firstChild){
-    parent.firstChild.remove()
-  }
-  
-  storagebooks.forEach(book => {    
-   const index = storagebooks.indexOf(book)
-   const tR = document.createElement('tr')
-   const selectTR = document.querySelector('table')
-   selectTR.appendChild(tR)  
- 
-   const tH = document.createElement('th')
-   const selectTH = document.querySelectorAll('tr')[index]   
-   selectTH.appendChild(tH)  
-   tH.innerHTML = `Tytuł: <span>${book.title}</span>`
- 
-   const autortD = document.createElement('td')
-   selectTH.appendChild(autortD)
-   autortD.innerHTML = `Autor: <span>${book.author}</span>`  
- 
-   const pioritytD = document.createElement('td')
-   selectTH.appendChild(pioritytD)
-   pioritytD.innerHTML = `Piorytet: <span>${book.piority}</span>`
- })
-}
-
-generateBook()
- 
- const addBook = (e) => {
+newElement.addEventListener('submit', e => { 
   e.preventDefault()
-  let ftitle = document.getElementById('title').value
-  let fauthor = document.getElementById('author').value
-  let fpiority = document.getElementById('piority').value
-  let fcategory = document.getElementById('category').value
-   
-  if (ftitle.length < 1) {
-    alert('Za krótki tytuł. Conajmniej 1 znak')
-    return addBook
-  } else if (fauthor.length < 3) {
-    alert('Za krótki author. Conajmniej 3 znaki')  
-    return addBook
-  } else if (fpiority < 1 || fpiority > 5) {
-    alert(`Za ${fpiority < 1 ? 'mała' : 'duża'} liczba`)
-    return addBook
-  } else if (!fcategory) {
-    alert('Wybierz kategorie')
-    return addBook
-  }
+  let formData = new FormData(newElement)
+  let valiTitle = formData.get('title') 
+  let valiAuthor = formData.get('author')
+  let valiPriority = formData.get('priority')
+  let valiCategory = formData.get('category') 
 
-  books.push({title: ftitle, author: fauthor, piority: fpiority, category: fcategory})
+  if (valiTitle.length < 1 || valiAuthor.length < 3 || valiPriority < 1 || valiPriority > 5 || !valiCategory ){
+    if (valiTitle.length < 1) {    
+      document.getElementById('title').placeholder = 'Za krótki tytuł. Conajmniej 1 znak'    
+    } 
+     if (valiAuthor.length < 3) {
+      document.getElementById('author').placeholder = 'Za krótki author. Conajmniej 3 znaki' 
+    } 
+     if (valiPriority < 1 || valiPriority > 5) {
+      document.getElementById('priority').type = 'text'  
+      document.getElementById('priority').value = ''  
+      document.getElementById('priority').placeholder = `Za ${Number(valiPriority) < 1 ? 'mała' : 'duża'} liczba`
+      document.getElementById('priority').type = 'number'
+    } 
+    if (!valiCategory) {    
+      document.getElementById('category').style.color = 'red'
+      document.getElementById('select').innerHTML = 'Wybierz kategorie'        
+      } 
+    if (valiCategory) {
+        document.getElementById('category').style.color = 'black';
+      } 
+     return false
+  }
   
-  generateBook()
-  save()
+  books.push({title: valiTitle, author: valiAuthor, priority: valiPriority, category: valiCategory})
+  
+  saveBook(books)
+  renderBooks(books)
   
   document.getElementById('title').value = ''
   document.getElementById('author').value = ''
-  document.getElementById('piority').value = ''
+  document.getElementById('priority').value = ''
   document.getElementById('category').value = ''
- }
-
- btn.addEventListener('click', addBook)
+  document.getElementById('title').placeholder = ''
+  document.getElementById('author').placeholder = ''
+  document.getElementById('priority').placeholder = ''
+  document.getElementById('category').placeholder = ''
+  document.getElementById('select').innerHTML = 'Select'
+  document.getElementById('category').style.color = 'black';  
+})

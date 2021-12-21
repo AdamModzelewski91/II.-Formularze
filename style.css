@@ -4,11 +4,6 @@
   box-sizing: border-box;  
 }
 
-*:focus{
-  border: none;
-  outline: none;
-}
-
 h1{
   margin: 20px;
 }
@@ -17,22 +12,25 @@ form{
   margin: 50px auto;
   font-family: 'Courier New', Courier, monospace;
   display: flex;
-  flex-direction: column;
+  flex-direction: column; 
   width: 400px;
   background-color: #777;
   padding: 20px;
   color: white;
 }
 
-form p {
+form label {
   padding-bottom: 4px;
 }
 
 form input{
   border: none;
-  background-color: #bbb;
-  color: white;
+  background-color: #bbb;  
   margin-bottom: 8px;
+}
+
+form input::placeholder{
+  color: red;
 }
 
 form select{
@@ -51,6 +49,7 @@ form .submitBTN{
   text-transform: uppercase;
   cursor: pointer;
   transition: 0.3s;
+  transform: translateY();
 }
 
 form .submitBTN:hover{
@@ -64,7 +63,7 @@ table{
   flex-direction: column; 
 }
 
-table tr{
+tr{
   margin: 0 auto ;
   display: flex;
   flex-direction: column;
@@ -72,13 +71,13 @@ table tr{
   margin-bottom: 20px;  
 }
 
-table tr th{
+th{
   display: flex;
   justify-content: space-between;
   width: 400px;  
 }
 
-table tr td{
+td{
   display: flex;
   justify-content: space-between;
   width: 400px;  
