@@ -8,12 +8,16 @@ h1{
   margin: 20px;
 }
 
+h2{
+  text-align: center;
+}
+
 form{
   margin: 50px auto;
   font-family: 'Courier New', Courier, monospace;
   display: flex;
   flex-direction: column; 
-  width: 400px;
+  width: 40vw;
   background-color: #777;
   padding: 20px;
   color: white;
@@ -58,27 +62,63 @@ form .submitBTN:hover{
 
 table{  
   font-family: 'Courier New', Courier, monospace;
-  margin-top: 20px;
+  margin: 20px auto 0;
+  width: 40vw;
   display: flex;
   flex-direction: column; 
+  background-color: #333;
+  padding: 0 20px;
+  
 }
 
 tr{
   margin: 0 auto ;
   display: flex;
   flex-direction: column;
-  text-align: left;
-  margin-bottom: 20px;  
+  text-align: left;   
+  width: 100%; 
+  padding: 20px 0;
+  border-bottom: solid white 2px;
+  
 }
 
-th{
+tr:nth-last-child(1){
+  margin-bottom: 20px;
+  border-bottom: solid white 0px;
+  padding-bottom: 0;
+}
+
+th, td{
   display: flex;
-  justify-content: space-between;
-  width: 400px;  
+  justify-content: space-between;  
+  background-color: #bbb;  
+  margin: 2.5px 0;
+  padding: 5px;
+  border-radius: 5px;
 }
 
 td{
-  display: flex;
-  justify-content: space-between;
-  width: 400px;  
+  background-color: #999;
+}
+
+@media (max-width: 950px) {
+  table, form{
+    width: 60vw;
+  }  
+}
+@media (max-width: 650px) {
+  table, form{
+    width: 100vw;
+  }  
+}
+
+@media (max-width: 450px) {
+  th, td{
+    display: flex;
+    flex-direction: column;
+  }
+
+  span{
+    text-align: right;
+  }
 }
